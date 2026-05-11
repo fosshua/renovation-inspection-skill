@@ -60,6 +60,7 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
 7. Produce structured output.
    - Follow `references/output-schema.json`.
    - Include an overall summary, most urgent next steps, findings, evidence gaps, and limitation note.
+   - When the request lacks images, video, measurements, or records needed for confidence, explicitly invite the user to supplement those materials.
    - Use Chinese by default when the user asks in Chinese.
 
 ## Input Handling
@@ -93,6 +94,13 @@ When evidence is insufficient, do not force a pass/fail result. Return:
 - What cannot be verified.
 - Why current evidence is insufficient.
 - The exact extra media or measurement needed, such as a close-up, side-angle shot, level measurement, ruler reference, water test record, pressure test record, concealed-work photo, or product label.
+- A concise prompt telling the user they can upload additional photos, videos, measurements, or施工记录 for a more reliable follow-up assessment.
+
+Prefer specific supplement prompts:
+- "请补充远景 + 近景照片，并用胶带或笔标出问题位置。"
+- "请补充 10-20 秒横向视频，包含整体位置、近距离细节和尺子/水平尺参照。"
+- "如果是隐蔽工程，请补充封槽/回填前照片、闭水记录、打压记录或材料标签。"
+- "如果涉及尺寸或坡度，请补充带尺子的照片或水平仪/坡度测量结果。"
 
 ## Standards Basis Rules
 

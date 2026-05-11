@@ -30,6 +30,7 @@ Input:
 Expected:
 - Output explains risk and next checks.
 - Requests location, area, hollowing extent, tile size, and photos/video before definitive severity.
+- Explicitly tells the user they can supplement photos or a short tapping video for follow-up assessment.
 - Does not invent visual evidence.
 
 ## Fixture 4: Mixed Electrical Evidence
@@ -51,3 +52,4 @@ Input:
 Expected:
 - Output contains no definitive pass/fail claim.
 - `evidence_gaps` lists exact missing views, measurements, and context.
+- Output invites the user to supplement clearer photos, video, measurements, or records as applicable.

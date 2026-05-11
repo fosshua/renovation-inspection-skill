@@ -23,6 +23,7 @@ Use this checklist before marking the skill ready.
 - Blurry, cropped, distant, or missing-context inputs do not produce definitive pass/fail claims.
 - Hidden plumbing, wiring, waterproofing, and structure are not judged unless directly visible or supported by records.
 - The response asks for specific missing evidence, such as close-up photos, side views, level/ruler measurements, pressure-test records, water-retention records, or concealed-work photos.
+- Text-only or low-confidence responses explicitly tell the user they can supplement photos, videos, measurements, or construction records for a follow-up assessment.
 
 ## High-Risk Escalation
 

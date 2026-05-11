@@ -16,12 +16,15 @@ reference_layers:
   good_example_requirements:
     - base is clean, firm, and flat
     - tile joints are consistent and aligned
+    - tile outside corners, miters, and haitang angles are narrow, even, straight, and free of visible chipping
     - wet-area floor slopes toward drain
     - edge closures at frames, thresholds, and drains are planned
     - hollowing is checked before fixture or cabinet installation
   bad_example_patterns:
     - hollow tile area before cabinet or fixture installation
     - large or irregular gap at window, door, or threshold edge
+    - oversized or inconsistent haitang-angle width at tile outside corner
+    - chipped, uneven, or misaligned tile miter or outside-corner edge
     - drainage slope not visible or likely wrong
     - contaminated base before paving
     - uneven joints or lippage
@@ -29,12 +32,14 @@ required_checks:
   - base cleaning and flatness check
   - hollowing tapping check
   - joint width and alignment check
+  - outside corner, miter, and haitang-angle width check
   - slope and water-flow check for wet areas
   - edge closure and threshold detail check
 recommended_evidence:
   - wide layout photos
   - tapping video
   - ruler or level photos
+  - close-up ruler photos of tile outside corners, miters, and haitang angles
   - floor drain water-flow video
   - edge and threshold close-ups
 next_stage_gate:

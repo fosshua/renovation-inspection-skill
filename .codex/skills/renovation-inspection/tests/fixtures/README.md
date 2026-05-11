@@ -1,90 +1,48 @@
 # Renovation Inspection Fixtures
 
-Use these fixtures to validate the skill manually or in automated prompt tests. Each fixture describes the expected behavior; media placeholders can be replaced with real test assets.
+Use these bundled image fixtures to validate the skill manually or in automated prompt tests. The fixture set is intentionally small: one normal/control case and two known issue cases. Video fixtures are intentionally not bundled.
 
-## Fixture 1: Image-Only Waterproofing
+## Image Assets
 
-Input:
-- `image_1`: Bathroom wall/floor waterproofing photo.
+- `images/design-drawing-normal.jpg`: normal/control case. A design drawing photo, not a site construction defect photo.
+- `images/window-bottom-gap.jpg`: issue case. Window bottom gap / edge finishing risk.
+- `images/tile-haitang-angle-wide.jpg`: issue case. Oversized tile haitang angle / outside-corner workmanship risk.
 
-Expected:
-- Stage is identified as `waterproofing`.
-- Findings preserve `image_1`.
-- Waterproofing concerns cite national or industry waterproofing sources when applicable.
-- If height or continuity cannot be measured, output requests ruler/level/close-up evidence.
-- Stage package checks include corners, pipe roots, threshold treatment, wall upturn, coating continuity, and water test records where relevant.
-- Missing water-retention or shower-test evidence is listed as unverified instead of confirmed defective.
-
-## Fixture 2: Video-Only Plumbing Rough-In
+## Case 1: Normal Control - Design Drawing
 
 Input:
-- `video_1`: Short walkthrough of bathroom/kitchen pipe routing.
+- `image_1`: `images/design-drawing-normal.jpg`
 
 Expected:
-- Stage is identified as `plumbing_electrical_rough_in`.
-- Findings use timestamp or frame references.
-- Drainage slope, pipe fixing, and crossing concerns are qualified if not measurable.
-- Hidden pressure-test conclusions are not made without records.
-- Stage package checks request pressure test, drainage test, conduit continuity, full-route photos, and crossing close-ups.
-- Missing pressure test or conduit evidence blocks chase closure when next-stage work is imminent.
+- Treat the image as design/documentary evidence, not as a construction defect photo.
+- Keep the answer short and say no confirmed site defect is visible.
+- Do not invent construction-defect findings from the drawing alone.
+- Suggest on-site checks for dimensions, water/electrical points, switch/socket/light positions, furniture clearances, and design changes.
+- If stage is reported, mark construction-stage confidence as low or medium because the image is not site evidence.
 
-## Fixture 3: Text-Only User Concern
+## Case 2: Window Bottom Gap / Edge Finishing
 
 Input:
-- "厨房墙砖有几处空鼓，师傅说没问题，可以继续装橱柜吗？"
+- `image_1`: `images/window-bottom-gap.jpg`
 
 Expected:
-- Stage is identified as `tiling_flooring` or stage confidence is marked low if insufficient.
-- Output explains risk and next checks.
-- Requests location, area, hollowing extent, tile size, and photos/video before definitive severity.
-- Explicitly tells the user they can supplement photos or a short tapping video for follow-up assessment.
-- Does not invent visual evidence.
+- Identify the primary stage as `window_door_installation`, with possible secondary stage `tiling_flooring`.
+- Detect the visible oversized window frame bottom gap / edge finishing risk.
+- Include `stage_id`, `stage_name`, evidence reference, evidence strength, severity, and stage-gate risk.
+- Match `window_gap_hidden_by_thick_caulk` if the evidence suggests loose filler, thick caulk, or cover-up risk.
+- Explain that final sealing, trim, or tile edge closure should pause until gap filling, inner/outer sealing, waterproofing, and drainage checks are verified.
+- Ask for ruler-based gap close-up, wide photo, interior/exterior sealant views, and rain/water-spray evidence when applicable.
 
-## Fixture 4: Mixed Electrical Evidence
+## Case 3: Oversized Tile Haitang Angle
 
 Input:
-- `image_1`: Open wall chase with conduits and socket boxes.
-- Text: "这是卧室水电阶段，准备封槽。"
+- `image_1`: `images/tile-haitang-angle-wide.jpg`
+- `text_1`: "海棠角宽度太大。"
 
 Expected:
-- Stage is identified as `plumbing_electrical_rough_in`.
-- Findings preserve `image_1`.
-- Electrical risks cite electrical installation sources when applicable.
-- High-risk findings recommend responsible contractor or qualified electrician review before closure.
-- Findings include common issue matches only for visible issues or user-provided evidence.
-
-## Fixture 5: Insufficient Evidence
-
-Input:
-- Blurry close-up with no room or component context.
-
-Expected:
-- Output contains no definitive pass/fail claim.
-- Stage is marked low confidence or candidate stages are listed.
-- `evidence_gaps` lists exact missing views, measurements, and context.
-- Output invites the user to supplement clearer photos, video, measurements, or records as applicable.
-
-## Fixture 6: Window Gap / Edge Finishing
-
-Input:
-- `image_1`: Window frame bottom edge with visible oversized gap to tile or floor finish.
-
-Expected:
-- Stage is identified as `window_door_installation`.
-- Finding includes `stage_id`, `stage_name`, and common issue match for oversized frame-to-floor/tile gap.
-- Finding includes shortcut pattern match if evidence suggests the gap may be hidden by thick caulk or loose filler.
-- Finding includes evidence strength and stage-gate risk.
-- Output distinguishes authoritative standards from manufacturer/design-node guidance and visual comparison.
-- Output requests ruler-based gap photo, interior/exterior sealant views, and water-spray or rain observation evidence.
-
-## Fixture 7: Shortcut Pattern - Rough-In Closed Without Tests
-
-Input:
-- `image_1`: Plumbing/electrical rough-in visible.
-- Text: "师傅说下午就封槽，没看到打压记录。"
-
-Expected:
-- Stage is identified as `plumbing_electrical_rough_in`.
-- Shortcut pattern `rough_in_closed_without_tests` is matched as suspected or confirmed based on evidence.
-- Output says closure should not proceed until pressure, drainage, conduit, and route-photo checks are complete.
-- Rectification workflow requests pressure gauge photos, drainage test video, conduit check, and full-route archive.
+- Prefer `tiling_flooring` over `window_door_installation` because the user names 海棠角 and the image is a tile outside-corner detail.
+- Detect oversized or inconsistent haitang-angle width as a tile outside-corner workmanship issue.
+- Include shortcut pattern match `tile_haitang_angle_too_wide` when ruler evidence or user text supports it.
+- Use `medium` severity by default; raise severity only if sharp edges, chipping, water exposure, or repeated broad failure is visible.
+- Do not misclassify the image as a window gap only because a vertical dark edge is visible.
+- Ask for a wide tile-corner location photo, perpendicular ruler close-up, side-angle photo showing both tile faces, and sample-board/design requirement if available.

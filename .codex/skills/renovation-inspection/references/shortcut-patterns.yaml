@@ -78,6 +78,26 @@ patterns:
       - reinspect before cabinet or fixture installation
     blocks_next_stage: true
 
+  - pattern_id: tile_haitang_angle_too_wide
+    stage_ids: [tiling_flooring]
+    name: 海棠角宽度过大或不均
+    visible_cues:
+      - ruler photo showing wide bevel, miter, or haitang-angle face at tile outside corner
+      - visible tile outside corner with uneven, bulky, or inconsistent bevel width
+      - user says the haitang angle, outside corner, bevel, or miter is too wide
+    risk: "海棠角过宽或不均会导致阳角观感粗糙、边线不直、缝隙显宽，后期美缝或打胶也难以遮盖。"
+    required_evidence:
+      - wide photo showing the tile outside-corner location
+      - close-up ruler photo perpendicular to the haitang-angle face
+      - side-angle photo showing both tile faces and the corner line
+      - design or sample-board requirement if available
+    remediation_guidance:
+      - pause final grout, caulk, or acceptance of the outside-corner finish
+      - compare with approved sample board or agreed tile-corner detail
+      - require re-cutting or replacing affected edge tiles if width or alignment is visibly unacceptable
+      - reinspect corner straightness, chipping, and width consistency before grouting or final trim
+    blocks_next_stage: true
+
   - pattern_id: drainage_slope_claim_without_test
     stage_ids: [plumbing_electrical_rough_in, tiling_flooring, completion_acceptance]
     name: 排水坡度口头保证但无测试

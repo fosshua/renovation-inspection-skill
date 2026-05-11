@@ -151,7 +151,7 @@ Use stage packages to sharpen the inspection:
 - `plumbing_electrical_rough_in`: focus on pressure testing, drainage testing, conduit continuity, pipe/conduit fixing, crossings, route archive, and closure readiness.
 - `waterproofing`: focus on base quality, corners, pipe roots, thresholds, wall upturn height, coating continuity, protection, and water tests.
 - `window_door_installation`: focus on frame fixing, frame-to-wall/floor gaps, gap filling, interior/exterior sealing, sill drainage, and edge finishing.
-- `tiling_flooring`: focus on base cleanliness, hollowing, joint consistency, wet-area slope, and edge/threshold closure.
+- `tiling_flooring`: focus on base cleanliness, hollowing, joint consistency, wet-area slope, edge/threshold closure, and tile outside-corner details such as haitang angles, miters, bevels, and chipped or oversized corner edges.
 - `completion_acceptance`: focus on room-by-room visual quality, function tests, documentation, environmental records, and punch-list closure.
 
 When a stage package is missing or incomplete, keep the stage classification but qualify confidence and ask for the missing source or project context.

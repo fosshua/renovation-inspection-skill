@@ -172,11 +172,12 @@ stages:
 
   - stage_id: tiling_flooring
     stage_name: 贴砖与地面
-    aliases: [贴砖, 瓷砖, 地砖, 地面, 木地板, tiling, flooring]
+    aliases: [贴砖, 瓷砖, 地砖, 墙砖, 海棠角, 阳角, 倒角, 碰角, 地面, 木地板, tiling, flooring]
     visual_cues:
       - wall tiles or floor tiles
       - tile adhesive or mortar
       - grout joints
+      - tile outside corner, miter, bevel, or haitang angle
       - floor leveling
       - wooden flooring
     authoritative_standard_ids: [gb-50210-2018, gb-50209-2010, gb-t-20238-2018, gb-55032-2022]
@@ -186,11 +187,14 @@ stages:
       - base flatness and cleaning
       - hollowing check
       - joint consistency
+      - outside corner, miter, and haitang-angle width consistency
       - drainage slope in wet areas
       - edge and threshold closure
     common_issues:
       - hollow tiles
       - uneven joints
+      - oversized or inconsistent haitang-angle width
+      - rough, chipped, or misaligned tile outside corner
       - insufficient drainage slope
       - poor edge closure around frames or thresholds
       - contaminated base before paving
@@ -198,6 +202,7 @@ stages:
       - wide photos with tile layout
       - tapping video
       - ruler or level photos
+      - ruler photo across tile outside corner or haitang angle
       - floor drain water-flow video
       - edge close-ups
     next_stage_gate:

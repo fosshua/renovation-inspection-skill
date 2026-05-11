@@ -41,6 +41,7 @@ Use this checklist before marking the skill ready.
 - High-priority stage package checks cover rough-in, waterproofing, window/door edge finishing, tiling/flooring, and completion acceptance.
 - Shortcut or poor-practice patterns are converted to findings only when visible cues or user text support them.
 - Missing required checks are reported as unverified, not as confirmed defects.
+- Tile outside-corner issues named as 海棠角, 阳角, 倒角, 碰角, or瓷砖 should prefer `tiling_flooring` instead of being absorbed into window/door gap checks.
 
 ## Problem Discovery SOP
 

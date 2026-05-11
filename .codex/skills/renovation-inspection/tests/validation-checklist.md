@@ -9,7 +9,9 @@ Use this checklist before marking the skill ready.
 - Every response includes `urgent_next_steps`.
 - Every finding includes `id`, `severity`, `category`, `evidence_refs`, `observed_evidence`, `risk`, `reference_basis`, `recommendation`, and `confidence`.
 - Findings include `stage_id` and `stage_name` when the construction stage is known.
+- Findings include `evidence_strength` as `confirmed`, `suspected`, or `not_verifiable` when applicable.
 - Findings include `common_issue_match` when the finding is based on a stage common issue pattern.
+- Findings include stage-gate risk and rectification workflow when they affect next-stage work.
 - Findings are sorted `critical`, `high`, `medium`, `low`, `info`.
 - Each finding preserves image, video timestamp, or frame references.
 
@@ -35,6 +37,16 @@ Use this checklist before marking the skill ready.
 - Common stage issues are converted to findings only when supported by evidence.
 - Relevant but unobserved common stage issues are listed as evidence gaps or checklist items.
 - High-priority stage package checks cover rough-in, waterproofing, window/door edge finishing, tiling/flooring, and completion acceptance.
+- Shortcut or poor-practice patterns are converted to findings only when visible cues or user text support them.
+- Missing required checks are reported as unverified, not as confirmed defects.
+
+## Problem Discovery SOP
+
+- Responses include checked and unverified stage-required checks when the stage is known.
+- Responses include next-shot guidance that names capture distance, angle, duration, tool, or record type where applicable.
+- Findings that block the next stage say so explicitly.
+- Rectification workflow includes action, likely responsible party, reinspection evidence, and blocks-next-stage status.
+- Evidence strength remains separate from confidence.
 
 ## Insufficient Evidence
 

@@ -53,6 +53,45 @@
       "type": "array",
       "items": { "type": "string" }
     },
+    "inspection_completeness": {
+      "type": "object",
+      "properties": {
+        "checked_required_checks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "unverified_required_checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["check", "needed_evidence"],
+            "properties": {
+              "check": { "type": "string" },
+              "needed_evidence": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "blocks_next_stage": { "type": "boolean" }
+            }
+          }
+        },
+        "summary": { "type": "string" }
+      }
+    },
+    "next_shot_guidance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["purpose", "instructions"],
+        "properties": {
+          "purpose": { "type": "string" },
+          "instructions": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
     "findings": {
       "type": "array",
       "items": {
@@ -72,6 +111,10 @@
           "id": { "type": "string" },
           "stage_id": { "type": "string" },
           "stage_name": { "type": "string" },
+          "evidence_strength": {
+            "type": "string",
+            "enum": ["confirmed", "suspected", "not_verifiable"]
+          },
           "severity": {
             "type": "string",
             "enum": ["critical", "high", "medium", "low", "info"]
@@ -117,6 +160,23 @@
               "stage_reference": { "type": "string" }
             }
           },
+          "shortcut_pattern_match": {
+            "type": "object",
+            "properties": {
+              "matched": { "type": "boolean" },
+              "pattern_id": { "type": "string" },
+              "name": { "type": "string" },
+              "risk": { "type": "string" }
+            }
+          },
+          "stage_gate_risk": {
+            "type": "object",
+            "properties": {
+              "blocks_next_stage": { "type": "boolean" },
+              "next_stage": { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          },
           "reference_basis": {
             "type": "array",
             "items": {
@@ -147,6 +207,18 @@
             }
           },
           "recommendation": { "type": "string" },
+          "rectification": {
+            "type": "object",
+            "properties": {
+              "action": { "type": "string" },
+              "likely_responsible_party": { "type": "string" },
+              "reinspection_evidence": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "blocks_next_stage": { "type": "boolean" }
+            }
+          },
           "professional_escalation": { "type": "boolean" },
           "needed_additional_evidence": {
             "type": "array",

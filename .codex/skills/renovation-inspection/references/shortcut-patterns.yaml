@@ -1,0 +1,114 @@
+metadata:
+  purpose: Common poor-practice patterns used to improve problem discovery. A pattern is a finding only when supported by submitted evidence.
+  checked_date: "2026-05-11"
+
+patterns:
+  - pattern_id: window_gap_hidden_by_thick_caulk
+    stage_ids: [window_door_installation, tiling_flooring]
+    name: 大缝隙用厚胶遮盖
+    visible_cues:
+      - oversized gap between frame and tile or floor
+      - loose foam, blocks, or filler visible in frame gap
+      - thick uneven sealant planned or already applied
+    risk: "可能掩盖填塞不密实、漏风、渗水、积灰、开裂和收口不耐久问题。"
+    required_evidence:
+      - ruler or feeler-gauge gap photo
+      - interior and exterior sealant close-ups
+      - water-spray or rain observation if exposed to weather
+    remediation_guidance:
+      - remove loose filler and dust
+      - confirm design node or manufacturer installation requirement
+      - fill gap continuously with appropriate backing/filler
+      - apply interior and exterior sealant after base is firm and dry
+    blocks_next_stage: true
+
+  - pattern_id: rough_in_closed_without_tests
+    stage_ids: [plumbing_electrical_rough_in]
+    name: 未测试即封槽
+    visible_cues:
+      - rough-in routes visible before closure
+      - no pressure gauge, drainage test, or conduit continuity evidence
+      - user says worker is ready to close chases
+    risk: "封槽后漏水、堵塞、线管不通或定位错误的返工成本显著增加。"
+    required_evidence:
+      - pressure gauge photo and holding time
+      - drainage test video
+      - conduit pull-through or threading evidence
+      - full-route photos before closure
+    remediation_guidance:
+      - pause chase closure
+      - complete pressure, drainage, and conduit checks
+      - archive route photos and records
+    blocks_next_stage: true
+
+  - pattern_id: waterproof_covered_without_node_photos
+    stage_ids: [waterproofing]
+    name: 未留节点照片即覆盖防水
+    visible_cues:
+      - waterproof layer visible before tile
+      - no pipe-root, corner, threshold, or upturn detail evidence
+      - user says tiling is about to start
+    risk: "防水薄弱节点被覆盖后无法低成本核验，后期渗漏返工代价高。"
+    required_evidence:
+      - pipe-root close-ups
+      - corner and threshold close-ups
+      - ruler photo of wall upturn
+      - water-retention or shower test record
+    remediation_guidance:
+      - complete node photo archive
+      - repair discontinuity or damage
+      - perform water-retention or spray test before covering
+    blocks_next_stage: true
+
+  - pattern_id: hollow_tile_dismissed_as_hidden_by_cabinet
+    stage_ids: [tiling_flooring]
+    name: 空鼓被解释为会被柜体遮挡
+    visible_cues:
+      - user reports hollow tile
+      - area will be covered by cabinet or fixture
+      - no tapping record or marked range
+    risk: "空鼓区域可能影响柜体固定、后期开裂、脱落或返工。"
+    required_evidence:
+      - tapping video
+      - marked hollowing range
+      - cabinet or fixture fixing position
+    remediation_guidance:
+      - confirm hollowing location and extent
+      - repair hollowing near fixing, edge, or wet-area risk points
+      - reinspect before cabinet or fixture installation
+    blocks_next_stage: true
+
+  - pattern_id: drainage_slope_claim_without_test
+    stage_ids: [plumbing_electrical_rough_in, tiling_flooring, completion_acceptance]
+    name: 排水坡度口头保证但无测试
+    visible_cues:
+      - drain or horizontal pipe visible
+      - no level, slope, or water-flow evidence
+      - user asks whether drainage is acceptable
+    risk: "坡度不足或倒坡会导致排水慢、积水、返味和堵塞。"
+    required_evidence:
+      - level or slope measurement photo
+      - water-flow test video
+      - drain location and pipe route wide photo
+    remediation_guidance:
+      - verify slope before covering or final acceptance
+      - adjust pipe or floor slope if water does not drain smoothly
+    blocks_next_stage: true
+
+  - pattern_id: finish_acceptance_without_function_tests
+    stage_ids: [completion_acceptance]
+    name: 只看表面不做功能测试
+    visible_cues:
+      - completed room or fixture installation
+      - no water, drainage, electrical, door/window, or document evidence
+      - user asks whether final acceptance is OK
+    risk: "外观合格不能证明功能、隐蔽记录和材料环保资料完整。"
+    required_evidence:
+      - room-by-room walkthrough video
+      - water and drainage operation videos
+      - socket and switch testing evidence
+      - environmental or material records where applicable
+      - punch-list closure evidence
+    remediation_guidance:
+      - complete functional tests and record review before confirming acceptance
+    blocks_next_stage: false

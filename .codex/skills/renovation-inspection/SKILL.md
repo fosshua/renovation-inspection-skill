@@ -65,8 +65,15 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
 
 7. Detect and classify issues.
    - Compare evidence against the detected stage's `required_checks`, `common_issues`, and `bad_example_patterns`.
+   - Load `references/shortcut-patterns.yaml` and compare evidence against stage-specific shortcut or poor-practice patterns.
    - Convert a common issue into a finding only when visible evidence or user text supports it.
+   - Convert a shortcut pattern into a finding only when evidence supports the visible cues.
    - If a common issue is relevant but not visible, list it as an evidence gap or checklist item.
+   - For every finding or stage-required check, classify evidence strength separately from confidence:
+     - `confirmed`: directly visible in image/video or supported by records.
+     - `suspected`: plausible from evidence but lacking measurement, clarity, angle, or records.
+     - `not_verifiable`: required for the stage but not shown by current evidence.
+   - List stage-required checks as checked or unverified before deciding whether the next stage can proceed.
    - Split distinct issues into separate findings.
    - Avoid over-grouping unrelated defects.
    - Avoid hidden-work conclusions when evidence is incomplete.
@@ -75,12 +82,14 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
    - Sort by severity in this order: `critical`, `high`, `medium`, `low`, `info`.
    - Use the criteria in `references/severity-and-confidence.md`.
    - Consider `next_stage_gate` when judging urgency before the next construction step.
+   - Add stage-gate risk: whether the issue or missing check blocks the next stage.
 
 9. Produce structured output.
    - Follow `references/output-schema.json`.
    - Include an overall summary, most urgent next steps, findings, evidence gaps, and limitation note.
    - Mention the identified stage and the most important stage-specific checks.
    - Include `stage_id`, `stage_name`, and `common_issue_match` in findings when applicable.
+   - Include evidence strength, checked/unverified checks, next-shot guidance, and rectification workflow when applicable.
    - When the request lacks images, video, measurements, or records needed for confidence, explicitly invite the user to supplement those materials.
    - Use Chinese by default when the user asks in Chinese.
 
@@ -144,6 +153,26 @@ Use stage packages to sharpen the inspection:
 
 When a stage package is missing or incomplete, keep the stage classification but qualify confidence and ask for the missing source or project context.
 
+## Problem Discovery SOP Rules
+
+Prioritize discovering actionable problems:
+- Do not report a missing required check as a confirmed defect. Mark it as `not_verifiable` and list the exact evidence needed.
+- If a visible problem blocks the next construction step, say so directly: "不建议进入下一道工序，需先复验/整改。"
+- If evidence is suggestive but incomplete, mark `evidence_strength: suspected` and provide a next-shot script.
+- Use shortcut patterns to catch common poor practices, such as thick caulk hiding large window gaps, closing rough-in chases before pressure tests, covering waterproofing before node photos, or dismissing hollow tiles because cabinets will cover them.
+- For each actionable finding, provide a rectification workflow:
+  - recommended action
+  - likely responsible party
+  - reinspection evidence
+  - whether it blocks next-stage work
+- Summarize inspection completeness for the recognized stage: checked required checks vs. unverified required checks.
+
+Next-shot guidance should be concrete. Include distance, angle, duration, tool, and record type where useful, for example:
+- "离窗 1.5 米拍整体图，再用尺子贴住缝隙拍近景。"
+- "横向拍 10-20 秒视频，覆盖水管、线管、交叉点、底盒和排水管。"
+- "拍打压表读数、开始/结束时间和压力保持过程。"
+- "用水平尺或倒水视频验证地漏/排水坡向。"
+
 ## Reference Image Comparison Rules
 
 Use reference examples to compare:
@@ -177,6 +206,7 @@ Do not use reference examples to:
 - `references/standards-sources.yaml`
 - `references/stage-inspection-matrix.yaml`
 - `references/stages/*.yaml`
+- `references/shortcut-patterns.yaml`
 - `references/reference-image-strategy.md`
 - `references/severity-and-confidence.md`
 - `tests/fixtures/README.md`

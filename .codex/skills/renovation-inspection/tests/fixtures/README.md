@@ -13,6 +13,7 @@ Expected:
 - Waterproofing concerns cite national or industry waterproofing sources when applicable.
 - If height or continuity cannot be measured, output requests ruler/level/close-up evidence.
 - Stage package checks include corners, pipe roots, threshold treatment, wall upturn, coating continuity, and water test records where relevant.
+- Missing water-retention or shower-test evidence is listed as unverified instead of confirmed defective.
 
 ## Fixture 2: Video-Only Plumbing Rough-In
 
@@ -25,6 +26,7 @@ Expected:
 - Drainage slope, pipe fixing, and crossing concerns are qualified if not measurable.
 - Hidden pressure-test conclusions are not made without records.
 - Stage package checks request pressure test, drainage test, conduit continuity, full-route photos, and crossing close-ups.
+- Missing pressure test or conduit evidence blocks chase closure when next-stage work is imminent.
 
 ## Fixture 3: Text-Only User Concern
 
@@ -70,5 +72,19 @@ Input:
 Expected:
 - Stage is identified as `window_door_installation`.
 - Finding includes `stage_id`, `stage_name`, and common issue match for oversized frame-to-floor/tile gap.
+- Finding includes shortcut pattern match if evidence suggests the gap may be hidden by thick caulk or loose filler.
+- Finding includes evidence strength and stage-gate risk.
 - Output distinguishes authoritative standards from manufacturer/design-node guidance and visual comparison.
 - Output requests ruler-based gap photo, interior/exterior sealant views, and water-spray or rain observation evidence.
+
+## Fixture 7: Shortcut Pattern - Rough-In Closed Without Tests
+
+Input:
+- `image_1`: Plumbing/electrical rough-in visible.
+- Text: "师傅说下午就封槽，没看到打压记录。"
+
+Expected:
+- Stage is identified as `plumbing_electrical_rough_in`.
+- Shortcut pattern `rough_in_closed_without_tests` is matched as suspected or confirmed based on evidence.
+- Output says closure should not proceed until pressure, drainage, conduit, and route-photo checks are complete.
+- Rectification workflow requests pressure gauge photos, drainage test video, conduit check, and full-route archive.

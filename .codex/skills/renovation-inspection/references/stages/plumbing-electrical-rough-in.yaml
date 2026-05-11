@@ -1,0 +1,43 @@
+stage_id: plumbing_electrical_rough_in
+stage_name: 水电粗装
+reference_layers:
+  authoritative_standards:
+    - gb-50303-2015
+    - gb-50242-2002
+    - gb-55032-2022
+    - gb-50327-2001
+  supplemental_benchmarks:
+    - dongyirisheng-construction-benchmark
+  manufacturer_or_design_guidance:
+    - water pipe manufacturer's pressure-test and installation requirements
+    - electrical conduit and wire manufacturer's bending, threading, and derating guidance
+    - project water/electrical positioning drawings
+  good_example_requirements:
+    - routes are clear, fixed, and photographed before closure
+    - pipe crossings are protected and not hard-pressed
+    - socket boxes and outlet points are level and consistent with design
+    - drainage pipe slope and support are visible or measured
+  bad_example_patterns:
+    - missing pressure-test record before closure
+    - drainage slope not visible or likely reverse slope
+    - water pipe and electrical conduit pressed tightly together
+    - strong and weak current routing unclear or mixed
+    - conduit enters box with damaged or loose connection
+    - chases closed before full-route photos
+required_checks:
+  - cold and hot water pressure test with pressure gauge and holding time
+  - drainage flow, water-fill, or leakage test
+  - conduit continuity and threading check
+  - route photo archive before chase closure
+  - outlet and socket positioning against drawings
+recommended_evidence:
+  - full-wall and full-floor route photos
+  - close-ups of every crossing and pipe root
+  - pressure gauge photo or video
+  - drainage test video
+  - conduit pull-through or threading evidence
+next_stage_gate:
+  - pressure, drainage, conduit, fixing, and route archive complete before sealing chases or waterproofing
+confidence_rules:
+  - no pressure record means leakage-related conclusions remain medium or low confidence
+  - no slope measurement means drainage findings must ask for level or water-flow evidence

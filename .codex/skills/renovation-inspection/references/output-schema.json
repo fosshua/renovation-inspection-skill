@@ -4,6 +4,7 @@
   "type": "object",
   "required": [
     "overall_assessment",
+    "stage_assessment",
     "urgent_next_steps",
     "findings",
     "evidence_gaps",
@@ -13,6 +14,40 @@
     "overall_assessment": {
       "type": "string",
       "description": "Concise summary of observed construction quality and risk."
+    },
+    "stage_assessment": {
+      "type": "object",
+      "required": ["primary_stage", "confidence"],
+      "properties": {
+        "primary_stage": {
+          "type": "object",
+          "required": ["stage_id", "stage_name"],
+          "properties": {
+            "stage_id": { "type": "string" },
+            "stage_name": { "type": "string" }
+          }
+        },
+        "secondary_stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["stage_id", "stage_name"],
+            "properties": {
+              "stage_id": { "type": "string" },
+              "stage_name": { "type": "string" }
+            }
+          }
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "stage_rationale": { "type": "string" },
+        "stage_source_gaps": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
     },
     "urgent_next_steps": {
       "type": "array",
@@ -35,6 +70,8 @@
         ],
         "properties": {
           "id": { "type": "string" },
+          "stage_id": { "type": "string" },
+          "stage_name": { "type": "string" },
           "severity": {
             "type": "string",
             "enum": ["critical", "high", "medium", "low", "info"]
@@ -72,6 +109,14 @@
           "observed_evidence": { "type": "string" },
           "risk": { "type": "string" },
           "severity_rationale": { "type": "string" },
+          "common_issue_match": {
+            "type": "object",
+            "properties": {
+              "matched": { "type": "boolean" },
+              "pattern": { "type": "string" },
+              "stage_reference": { "type": "string" }
+            }
+          },
           "reference_basis": {
             "type": "array",
             "items": {

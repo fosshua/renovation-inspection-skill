@@ -11,7 +11,7 @@ metadata:
 
 # Renovation Inspection
 
-Use this skill to inspect residential renovation or fit-out construction from user-provided photos, videos, and text. The skill produces evidence-based, severity-ranked findings grounded first in applicable Chinese national standards, then in clearly labeled enterprise standards or visual best-practice comparisons when national standards do not cover the observed issue precisely.
+Use this skill to inspect residential renovation or fit-out construction from user-provided photos, videos, and text. The skill first identifies the construction stage, then loads that stage's dedicated reference materials before producing evidence-based, severity-ranked findings grounded first in applicable Chinese national standards, then in clearly labeled enterprise standards or visual best-practice comparisons when national standards do not cover the observed issue precisely.
 
 ## Scope
 
@@ -32,34 +32,55 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
    - Label the user's text description or concern as `text_1` when it is used as evidence.
    - Extract text context: room, renovation stage, trade, material, user concern, claimed measurements, and project constraints.
 
-2. Extract visual evidence.
+2. Identify the construction stage.
+   - Load `references/stage-inspection-matrix.yaml`.
+   - Classify one or more likely stages from visual cues and text context.
+   - Include stage confidence: `high`, `medium`, or `low`.
+   - If evidence spans multiple stages, name the dominant stage and secondary stages.
+   - If the stage is ambiguous, list candidate stages and ask for wider photos/video or project context before making stage-specific claims.
+
+3. Load stage reference materials.
+   - Load the detected stage entry from `references/stage-inspection-matrix.yaml`.
+   - If `reference_package` is present, load the corresponding file under `references/stages/`.
+   - Use the stage's `authoritative_standard_ids` to prioritize sources in `references/standards-sources.yaml`.
+   - Use `supplemental_benchmark_ids`, manufacturer/design guidance, good examples, and bad example patterns only as supplemental references.
+   - Keep stage `source_gaps` visible in uncertainty and evidence-gap handling.
+
+4. Extract visual evidence.
    - Inspect only what is visible.
    - Record location, observable defect, affected component, and evidence reference.
    - Preserve per-image or per-timestamp references in every finding.
 
-3. Retrieve assessment sources.
+5. Retrieve assessment sources.
    - Load `references/standards-sources.yaml`.
-   - Prefer applicable national or industry standards with source metadata.
+   - Prefer applicable national or industry standards with source metadata from the detected stage.
    - Use enterprise standards only as supplemental best-practice benchmarks.
    - If no reliable source applies, label the basis as `visual_practical_judgment`.
 
-4. Retrieve or compare reference examples.
+6. Retrieve or compare reference examples.
    - Load `references/reference-image-strategy.md`.
+   - Use stage package `good_example_requirements` and `bad_example_patterns` as comparison prompts.
    - Use reference examples only to compare observable construction attributes.
    - Do not treat a reference image as a legal pass/fail standard.
 
-5. Detect and classify issues.
+7. Detect and classify issues.
+   - Compare evidence against the detected stage's `required_checks`, `common_issues`, and `bad_example_patterns`.
+   - Convert a common issue into a finding only when visible evidence or user text supports it.
+   - If a common issue is relevant but not visible, list it as an evidence gap or checklist item.
    - Split distinct issues into separate findings.
    - Avoid over-grouping unrelated defects.
    - Avoid hidden-work conclusions when evidence is incomplete.
 
-6. Rank severity.
+8. Rank severity.
    - Sort by severity in this order: `critical`, `high`, `medium`, `low`, `info`.
    - Use the criteria in `references/severity-and-confidence.md`.
+   - Consider `next_stage_gate` when judging urgency before the next construction step.
 
-7. Produce structured output.
+9. Produce structured output.
    - Follow `references/output-schema.json`.
    - Include an overall summary, most urgent next steps, findings, evidence gaps, and limitation note.
+   - Mention the identified stage and the most important stage-specific checks.
+   - Include `stage_id`, `stage_name`, and `common_issue_match` in findings when applicable.
    - When the request lacks images, video, measurements, or records needed for confidence, explicitly invite the user to supplement those materials.
    - Use Chinese by default when the user asks in Chinese.
 
@@ -107,8 +128,21 @@ Prefer specific supplement prompts:
 - National standards and mandatory engineering construction standards are primary.
 - Industry standards and local regulations may be used when clearly applicable.
 - Enterprise standards are supplemental and must be labeled as non-authoritative benchmarks.
+- Stage-specific standard IDs from `stage-inspection-matrix.yaml` determine source priority before generic source matching.
+- Manufacturer instructions, design nodes, good examples, and bad examples are supplemental references unless the contract makes them binding.
 - Always include source name, standard number or source ID, version/date when known, applicability, and confidence.
 - If using third-party copies or summaries, state that the official text should be verified before contractual or legal use.
+
+## Stage-Based Inspection Rules
+
+Use stage packages to sharpen the inspection:
+- `plumbing_electrical_rough_in`: focus on pressure testing, drainage testing, conduit continuity, pipe/conduit fixing, crossings, route archive, and closure readiness.
+- `waterproofing`: focus on base quality, corners, pipe roots, thresholds, wall upturn height, coating continuity, protection, and water tests.
+- `window_door_installation`: focus on frame fixing, frame-to-wall/floor gaps, gap filling, interior/exterior sealing, sill drainage, and edge finishing.
+- `tiling_flooring`: focus on base cleanliness, hollowing, joint consistency, wet-area slope, and edge/threshold closure.
+- `completion_acceptance`: focus on room-by-room visual quality, function tests, documentation, environmental records, and punch-list closure.
+
+When a stage package is missing or incomplete, keep the stage classification but qualify confidence and ask for the missing source or project context.
 
 ## Reference Image Comparison Rules
 
@@ -141,6 +175,8 @@ Do not use reference examples to:
 
 - `references/output-schema.json`
 - `references/standards-sources.yaml`
+- `references/stage-inspection-matrix.yaml`
+- `references/stages/*.yaml`
 - `references/reference-image-strategy.md`
 - `references/severity-and-confidence.md`
 - `tests/fixtures/README.md`

@@ -1,0 +1,44 @@
+stage_id: tiling_flooring
+stage_name: 贴砖与地面
+reference_layers:
+  authoritative_standards:
+    - gb-50210-2018
+    - gb-50209-2010
+    - gb-t-20238-2018
+    - gb-55032-2022
+  supplemental_benchmarks:
+    - dongyirisheng-construction-benchmark
+    - longfor-or-vanke-fine-decoration-benchmark
+  manufacturer_or_design_guidance:
+    - tile adhesive or grout manufacturer's base and curing requirements
+    - wood floor manufacturer's installation and expansion-gap requirements
+    - tile layout and drain slope design
+  good_example_requirements:
+    - base is clean, firm, and flat
+    - tile joints are consistent and aligned
+    - wet-area floor slopes toward drain
+    - edge closures at frames, thresholds, and drains are planned
+    - hollowing is checked before fixture or cabinet installation
+  bad_example_patterns:
+    - hollow tile area before cabinet or fixture installation
+    - large or irregular gap at window, door, or threshold edge
+    - drainage slope not visible or likely wrong
+    - contaminated base before paving
+    - uneven joints or lippage
+required_checks:
+  - base cleaning and flatness check
+  - hollowing tapping check
+  - joint width and alignment check
+  - slope and water-flow check for wet areas
+  - edge closure and threshold detail check
+recommended_evidence:
+  - wide layout photos
+  - tapping video
+  - ruler or level photos
+  - floor drain water-flow video
+  - edge and threshold close-ups
+next_stage_gate:
+  - do not install cabinets, fixtures, or final trim before hollowing, slope, joint, and edge checks are complete
+confidence_rules:
+  - hollowing claims require tapping video or marked inspection result
+  - slope claims require level, water-flow, or design evidence

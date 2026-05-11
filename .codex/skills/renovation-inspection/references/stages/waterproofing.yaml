@@ -1,0 +1,41 @@
+stage_id: waterproofing
+stage_name: 防水
+reference_layers:
+  authoritative_standards:
+    - gb-55030-2022
+    - jgj-298-2013
+    - gb-55032-2022
+  supplemental_benchmarks:
+    - dongyirisheng-construction-benchmark
+  manufacturer_or_design_guidance:
+    - waterproof coating manufacturer's base, thickness, curing, and recoating requirements
+    - project waterproofing height and wet-area node drawings
+  good_example_requirements:
+    - base is clean, firm, and free of loose dust
+    - corners, pipe roots, thresholds, and drains have reinforced treatment
+    - wall upturn height is visible or measured
+    - coating is continuous and protected before tiling
+    - water-retention or shower test is recorded
+  bad_example_patterns:
+    - discontinuous coating at wall-floor corners
+    - missing pipe-root reinforcement
+    - coating damaged by stacking or foot traffic
+    - threshold or window/door edge untreated
+    - no water test before covering
+required_checks:
+  - base cleaning and repair check
+  - corner, pipe-root, drain, and threshold close-up check
+  - wall upturn height measurement
+  - curing and protection check
+  - water-retention or shower test record
+recommended_evidence:
+  - wide photos before and after coating
+  - ruler photo of upturn height
+  - pipe-root and corner close-ups
+  - water-retention time-stamped photos
+  - shower or spray test video where applicable
+next_stage_gate:
+  - node checks and water test complete before tile setting or surface covering
+confidence_rules:
+  - if only a wide photo is available, qualify waterproofing compliance and ask for node close-ups
+  - do not infer hidden waterproof layer quality after tiling without records

@@ -5,18 +5,36 @@ Use this checklist before marking the skill ready.
 ## Structured Output
 
 - Every response includes `overall_assessment`.
+- Every response includes `stage_assessment` with `primary_stage` and confidence.
 - Every response includes `urgent_next_steps`.
 - Every finding includes `id`, `severity`, `category`, `evidence_refs`, `observed_evidence`, `risk`, `reference_basis`, `recommendation`, and `confidence`.
+- Findings include `stage_id` and `stage_name` when the construction stage is known.
+- Findings include `common_issue_match` when the finding is based on a stage common issue pattern.
 - Findings are sorted `critical`, `high`, `medium`, `low`, `info`.
 - Each finding preserves image, video timestamp, or frame references.
+
+## Stage Recognition
+
+- The skill identifies the construction stage before selecting standards or producing findings.
+- Mixed-stage inputs identify primary and secondary stages instead of forcing one stage.
+- Ambiguous-stage inputs list likely candidate stages and request wider photos/video or stage context.
+- Stage package materials are loaded before findings for high-priority stages.
 
 ## Standards Priority
 
 - Applicable mandatory engineering codes and national standards appear before industry standards.
 - Industry standards appear before enterprise benchmarks unless the user explicitly asks for an enterprise-standard comparison.
 - Enterprise standards are labeled as supplemental and non-authoritative.
+- Manufacturer instructions, design nodes, good examples, and bad examples are labeled as supplemental unless contractually binding.
+- Detected stage source IDs are prioritized before generic source matching.
 - Reference images are labeled as comparison evidence, not compliance basis.
 - Visual judgment without a reliable standard is labeled `visual_practical_judgment` and confidence is qualified.
+
+## Common Issue Comparison
+
+- Common stage issues are converted to findings only when supported by evidence.
+- Relevant but unobserved common stage issues are listed as evidence gaps or checklist items.
+- High-priority stage package checks cover rough-in, waterproofing, window/door edge finishing, tiling/flooring, and completion acceptance.
 
 ## Insufficient Evidence
 

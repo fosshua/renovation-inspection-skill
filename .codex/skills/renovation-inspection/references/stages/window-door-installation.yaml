@@ -1,0 +1,42 @@
+stage_id: window_door_installation
+stage_name: 门窗安装与窗边收口
+reference_layers:
+  authoritative_standards:
+    - gb-50210-2018
+    - gb-55030-2022
+    - gb-55032-2022
+  supplemental_benchmarks:
+    - dongyirisheng-construction-benchmark
+    - longfor-or-vanke-fine-decoration-benchmark
+  manufacturer_or_design_guidance:
+    - window or door manufacturer's frame fixing and sealant requirements
+    - project window sill, threshold, and waterproof node drawings
+  good_example_requirements:
+    - frame is stable and plumb
+    - gap between frame and wall or tile is controlled, filled, and sealed
+    - interior and exterior sealant is continuous and neat
+    - sill or lower frame has reliable waterproof and drainage treatment
+    - finish closure does not rely on excessive surface sealant
+  bad_example_patterns:
+    - oversized gap between frame and floor, tile, or wall
+    - loose foam or blocks used as visible permanent filling
+    - exterior sealant missing or discontinuous
+    - lower frame gap covered only by thick caulk
+    - sill slope or water path unclear
+required_checks:
+  - frame fixing and stability check
+  - frame-to-wall and frame-to-floor gap measurement
+  - interior and exterior sealant continuity check
+  - sill slope or drainage path check
+  - water-spray or rain observation when exposed to weather
+recommended_evidence:
+  - ruler or feeler-gauge photos of gaps
+  - wide photo showing window location and floor/tile relation
+  - interior and exterior close-ups of sealant
+  - water-spray or rain video
+  - manufacturer or design node screenshot
+next_stage_gate:
+  - do not final seal, tile edge, or accept before gap filling, waterproof sealing, and drainage are verified
+confidence_rules:
+  - if protection film obscures the frame edge, ask for a clean close-up after safe film removal
+  - if no scale is shown, avoid definitive gap tolerance claims and request measurement

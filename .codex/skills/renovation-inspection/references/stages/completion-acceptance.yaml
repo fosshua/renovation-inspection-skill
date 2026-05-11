@@ -1,0 +1,42 @@
+stage_id: completion_acceptance
+stage_name: 竣工验收
+reference_layers:
+  authoritative_standards:
+    - gb-50300-2013
+    - gb-50210-2018
+    - gb-50325-2020
+    - gb-55032-2022
+  supplemental_benchmarks:
+    - longfor-or-vanke-fine-decoration-benchmark
+    - dongyirisheng-construction-benchmark
+  manufacturer_or_design_guidance:
+    - fixture, appliance, door/window, cabinet, floor, and coating manufacturer acceptance and maintenance instructions
+    - contract scope, design drawings, and handover standards
+  good_example_requirements:
+    - room-by-room defects are recorded and closed
+    - water, drainage, electrical, doors/windows, and fixtures function normally
+    - finish details are clean and consistent
+    - environmental and material documents are available where required
+    - warranty and operation documents are collected
+  bad_example_patterns:
+    - missing test or warranty records
+    - unresolved leakage, drainage, or electrical issue
+    - visible cracks, hollowing, poor sealant, or finish damage
+    - incomplete punch-list closure
+    - no indoor environmental report when required
+required_checks:
+  - room-by-room visual and functional walkthrough
+  - water and drainage operation checks
+  - electrical socket and switch checks
+  - door/window opening, closing, and sealing checks
+  - indoor environmental or material documentation review
+recommended_evidence:
+  - room-by-room walkthrough video
+  - close-ups of every defect
+  - test records and invoices
+  - environmental report if applicable
+  - punch-list signoff
+next_stage_gate:
+  - do not final accept before functional tests, record review, and punch-list closure
+confidence_rules:
+  - completion acceptance needs both visual evidence and records; missing records reduce confidence

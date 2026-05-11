@@ -1,0 +1,328 @@
+metadata:
+  purpose: Map renovation construction stages to stage-specific reference packages, standards, common issues, and evidence requests.
+  source_rule: >
+    Use this matrix after input normalization and before issue detection. A stage
+    common issue becomes a finding only when supported by visible evidence or user
+    text. Otherwise, treat it as an evidence gap or checklist item.
+  checked_date: "2026-05-11"
+
+stages:
+  - stage_id: demolition
+    stage_name: 拆除
+    aliases: [拆旧, 拆改, demolition]
+    visual_cues:
+      - exposed masonry or concrete
+      - removed finishes
+      - construction debris
+      - temporary protection
+    authoritative_standard_ids: [gb-55032-2022, gb-50327-2001]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark]
+    reference_package: null
+    required_checks:
+      - confirm protected retained components
+      - confirm no unauthorized structural removal
+      - confirm waste and dust control
+    common_issues:
+      - unauthorized wall removal
+      - poor finished-product protection
+      - exposed unsafe edges or debris
+    recommended_evidence:
+      - before and after wide photos
+      - wall type confirmation
+      - protection photos
+    next_stage_gate:
+      - structural and retained-system risks reviewed before rough-in
+    source_gaps:
+      - detailed local demolition safety rules
+
+  - stage_id: masonry_base_work
+    stage_name: 砌筑与基层处理
+    aliases: [砌筑, 找平, 基层, 抹灰, masonry, base work]
+    visual_cues:
+      - new block wall
+      - plastering
+      - wall leveling
+      - repaired chases
+    authoritative_standard_ids: [gb-55032-2022, gb-50210-2018, gb-50300-2013]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark]
+    reference_package: null
+    required_checks:
+      - wall flatness and verticality
+      - chase repair quality
+      - hollowing and cracking risk
+      - interface treatment
+    common_issues:
+      - loose or dusty base
+      - cracking at repaired chases
+      - uneven wall base
+      - missing mesh or reinforcement where needed
+    recommended_evidence:
+      - wide wall photos
+      - ruler or level photos
+      - close-ups of repaired chases
+    next_stage_gate:
+      - base is clean, firm, flat, and ready for waterproofing or finishing
+    source_gaps:
+      - trade-specific plastering tolerances by local contract
+
+  - stage_id: plumbing_electrical_rough_in
+    stage_name: 水电粗装
+    aliases: [水电, 水电阶段, 水电改造, plumbing, electrical, rough-in]
+    visual_cues:
+      - red and blue water pipes
+      - orange or white electrical conduits
+      - wall or floor chases
+      - switch boxes or socket boxes
+      - drain pipes before backfill
+    authoritative_standard_ids: [gb-50303-2015, gb-50242-2002, gb-55032-2022, gb-50327-2001]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark]
+    reference_package: stages/plumbing-electrical-rough-in.yaml
+    required_checks:
+      - water pressure test
+      - drainage flow or water test
+      - conduit continuity
+      - pipe fixing and protection
+      - route photo archive before closure
+    common_issues:
+      - missing pressure test record
+      - drainage slope not verifiable
+      - water and electrical routes too close or unprotected
+      - weak and strong current mixed or unclear
+      - conduit or pipe fixing gaps
+      - no hidden-work photo archive before closure
+    recommended_evidence:
+      - pressure gauge photo and holding time
+      - drainage test video
+      - conduit threading or pull-through check
+      - full-route photos
+      - crossing-point close-ups
+    next_stage_gate:
+      - do not close chases or waterproof until pressure, drainage, conduit, and route-photo checks are complete
+    source_gaps: []
+
+  - stage_id: waterproofing
+    stage_name: 防水
+    aliases: [防水, 闭水, 淋水, waterproofing]
+    visual_cues:
+      - waterproof coating
+      - green or blue coated floor or wall
+      - pipe-root treatment
+      - corner reinforcement
+      - water-retention test
+    authoritative_standard_ids: [gb-55030-2022, jgj-298-2013, gb-55032-2022]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark]
+    reference_package: stages/waterproofing.yaml
+    required_checks:
+      - base cleaning and firmness
+      - corner and pipe-root reinforcement
+      - wall upturn height
+      - threshold and door opening treatment
+      - water-retention or shower test
+    common_issues:
+      - missing pipe-root reinforcement
+      - discontinuous wall-floor upturn
+      - insufficient wall upturn evidence
+      - coating contamination or damage
+      - missing water-retention record
+    recommended_evidence:
+      - corner close-ups
+      - pipe-root close-ups
+      - ruler photo for wall upturn
+      - water-retention or shower test photos
+      - before tile photos
+    next_stage_gate:
+      - do not tile or cover waterproofing before node checks and water test records are complete
+    source_gaps: []
+
+  - stage_id: window_door_installation
+    stage_name: 门窗安装与窗边收口
+    aliases: [门窗, 窗户, 窗边, 窗框, 收口, window, door, frame finishing]
+    visual_cues:
+      - window or door frame
+      - protective film on frames
+      - frame-to-wall gap
+      - frame bottom gap
+      - sealant or foam filling
+      - tile or sill edge near frame
+    authoritative_standard_ids: [gb-50210-2018, gb-55030-2022, gb-55032-2022]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark, longfor-or-vanke-fine-decoration-benchmark]
+    reference_package: stages/window-door-installation.yaml
+    required_checks:
+      - frame fixing and stability
+      - frame-to-wall gap filling
+      - interior and exterior sealing continuity
+      - sill or tile edge closure
+      - drainage and water-spray check when exposed to rain
+    common_issues:
+      - oversized frame-to-tile or frame-to-floor gap
+      - only surface sealant used to cover large void
+      - discontinuous foam or mortar filling
+      - missing exterior sealant check
+      - poor sill slope or water path
+    recommended_evidence:
+      - ruler-based gap photo
+      - interior frame edge close-up
+      - exterior frame edge photo or video
+      - water-spray or rain observation video
+      - design node or manufacturer installation note
+    next_stage_gate:
+      - do not final-seal or cover frame edges before gap filling, waterproof sealing, and drainage checks are verified
+    source_gaps:
+      - manufacturer-specific installation tolerances
+
+  - stage_id: tiling_flooring
+    stage_name: 贴砖与地面
+    aliases: [贴砖, 瓷砖, 地砖, 地面, 木地板, tiling, flooring]
+    visual_cues:
+      - wall tiles or floor tiles
+      - tile adhesive or mortar
+      - grout joints
+      - floor leveling
+      - wooden flooring
+    authoritative_standard_ids: [gb-50210-2018, gb-50209-2010, gb-t-20238-2018, gb-55032-2022]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark, longfor-or-vanke-fine-decoration-benchmark]
+    reference_package: stages/tiling-flooring.yaml
+    required_checks:
+      - base flatness and cleaning
+      - hollowing check
+      - joint consistency
+      - drainage slope in wet areas
+      - edge and threshold closure
+    common_issues:
+      - hollow tiles
+      - uneven joints
+      - insufficient drainage slope
+      - poor edge closure around frames or thresholds
+      - contaminated base before paving
+    recommended_evidence:
+      - wide photos with tile layout
+      - tapping video
+      - ruler or level photos
+      - floor drain water-flow video
+      - edge close-ups
+    next_stage_gate:
+      - do not install cabinets, fixtures, or flooring covers before hollowing, slope, and edge checks are complete
+    source_gaps: []
+
+  - stage_id: carpentry_ceiling
+    stage_name: 木作与吊顶
+    aliases: [木作, 吊顶, 龙骨, 石膏板, carpentry, ceiling]
+    visual_cues:
+      - ceiling frame
+      - gypsum board
+      - wood base
+      - cabinet base
+    authoritative_standard_ids: [gb-50210-2018, gb-55032-2022, gb-55037-2022]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark]
+    reference_package: null
+    required_checks:
+      - frame fixing
+      - fire and moisture considerations
+      - board joint treatment
+      - access opening coordination
+    common_issues:
+      - poor fixing
+      - missing inspection opening
+      - cracking risk at board joints
+      - moisture-prone wood base
+    recommended_evidence:
+      - frame close-ups
+      - screw spacing photos
+      - access opening photos
+    next_stage_gate:
+      - frame and hidden services checked before board closure
+    source_gaps:
+      - material-specific manufacturer instructions
+
+  - stage_id: paint_finish
+    stage_name: 油漆与饰面
+    aliases: [油漆, 腻子, 乳胶漆, 饰面, paint, finish]
+    visual_cues:
+      - putty
+      - primer or paint
+      - wall sanding
+      - finish surface
+    authoritative_standard_ids: [gb-50210-2018, gb-50325-2020, gb-55032-2022]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark]
+    reference_package: null
+    required_checks:
+      - base dryness and firmness
+      - crack treatment
+      - surface flatness and contamination
+      - indoor environmental material checks
+    common_issues:
+      - cracking
+      - uneven surface
+      - peeling or powdering
+      - poor color consistency
+    recommended_evidence:
+      - side-light wall photos
+      - close-ups of cracks
+      - material labels
+    next_stage_gate:
+      - finish surface checked before final installation and handover
+    source_gaps:
+      - paint brand-specific application requirements
+
+  - stage_id: fixture_installation
+    stage_name: 洁具五金与设备安装
+    aliases: [洁具, 五金, 安装, 橱柜, 浴室柜, fixtures, installation]
+    visual_cues:
+      - sanitary fixtures
+      - faucets
+      - cabinets
+      - appliances
+      - hardware
+    authoritative_standard_ids: [gb-50242-2002, gb-50303-2015, gb-50210-2018]
+    supplemental_benchmark_ids: [dongyirisheng-construction-benchmark]
+    reference_package: null
+    required_checks:
+      - fixture positioning
+      - water connection leak check
+      - electrical safety check
+      - sealant and edge closure
+    common_issues:
+      - wrong outlet position
+      - leakage after connection
+      - poor sealant
+      - cabinet conflicts with pipes or sockets
+    recommended_evidence:
+      - fixture installation photos
+      - leak test video
+      - outlet measurement photos
+    next_stage_gate:
+      - functional tests complete before completion acceptance
+    source_gaps:
+      - manufacturer-specific installation instructions
+
+  - stage_id: completion_acceptance
+    stage_name: 竣工验收
+    aliases: [竣工, 验收, 完工, 交付, completion, acceptance]
+    visual_cues:
+      - completed surfaces
+      - installed fixtures
+      - final handover
+      - punch list
+    authoritative_standard_ids: [gb-50300-2013, gb-50210-2018, gb-50325-2020, gb-55032-2022]
+    supplemental_benchmark_ids: [longfor-or-vanke-fine-decoration-benchmark, dongyirisheng-construction-benchmark]
+    reference_package: stages/completion-acceptance.yaml
+    required_checks:
+      - visual quality and function checks
+      - hollowing and slope checks where applicable
+      - water/electrical function checks
+      - indoor environment records
+      - punch-list closure
+    common_issues:
+      - incomplete punch-list closure
+      - missing test records
+      - poor finish details
+      - unresolved leakage or drainage issue
+      - missing environmental report
+    recommended_evidence:
+      - room-by-room walkthrough video
+      - test records
+      - issue close-ups
+      - material and warranty documents
+    next_stage_gate:
+      - do not final accept before function tests, record review, and punch-list signoff
+    source_gaps: []

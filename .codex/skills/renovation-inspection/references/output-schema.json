@@ -65,7 +65,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "description": "Examples: image_1, image_2, video_1@00:12."
+              "description": "Examples: image_1, image_2, video_1@00:12, text_1."
             },
             "minItems": 1
           },

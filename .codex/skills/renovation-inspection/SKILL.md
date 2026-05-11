@@ -29,6 +29,7 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
    - Identify input types: images, video, text, or mixed.
    - Label each image as `image_1`, `image_2`, etc.
    - For video, identify observable timestamps or representative frames as `video_1@00:12`, `video_1@frame_3`, etc.
+   - Label the user's text description or concern as `text_1` when it is used as evidence.
    - Extract text context: room, renovation stage, trade, material, user concern, claimed measurements, and project constraints.
 
 2. Extract visual evidence.
@@ -84,6 +85,7 @@ Extract and use:
 - Trade/system: masonry, waterproofing, plumbing, electrical, HVAC, tiling, flooring, ceiling, cabinetry, paint.
 - Materials and measurements claimed by the user.
 - User's explicit concern.
+- Use `text_1` in `evidence_refs` for findings based only on the user's description.
 
 ## Insufficient Evidence Handling
 

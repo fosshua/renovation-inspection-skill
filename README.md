@@ -73,6 +73,8 @@ cp -R .codex/skills/renovation-inspection .claude/skills/
 
 ## 输出原则
 
+默认使用简体中文输出巡检结果；`critical`、`high`、`confirmed`、`not_verifiable` 等结构化枚举值可以保留英文，并在需要时用中文解释。除非用户明确要求英文或其他语言，否则面向用户的判断、风险说明、整改建议和补充证据提示都应使用中文。
+
 该 skill 的输出应尽量包含：
 
 - 总体判断。

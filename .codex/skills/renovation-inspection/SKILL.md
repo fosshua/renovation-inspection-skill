@@ -91,7 +91,9 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
    - Include `stage_id`, `stage_name`, and `common_issue_match` in findings when applicable.
    - Include evidence strength, checked/unverified checks, next-shot guidance, and rectification workflow when applicable.
    - When the request lacks images, video, measurements, or records needed for confidence, explicitly invite the user to supplement those materials.
-   - Use Chinese by default when the user asks in Chinese.
+   - Use Simplified Chinese by default for user-facing results, field explanations, recommendations, and evidence-gap prompts.
+   - Keep stable machine-readable enum values in English, such as `high`, `confirmed`, `not_verifiable`, and `blocks_next_stage`.
+   - Use another language only when the user explicitly requests it.
 
 ## Input Handling
 
@@ -186,6 +188,8 @@ Do not use reference examples to:
 
 ## Output Style
 
+- Default to Simplified Chinese for the full inspection result unless the user explicitly asks for another language.
+- Keep technical identifiers and schema enum values in their original English form, but explain their meaning in Chinese when helpful.
 - Start with a concise overall assessment.
 - List findings in severity order.
 - For each finding, include evidence, risk, basis, confidence, and actionable remediation.

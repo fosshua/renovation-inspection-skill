@@ -30,5 +30,5 @@
 
 ## 5. GitHub Publishing
 
-- [ ] 5.1 Commit the OpenSpec proposal artifacts.
-- [ ] 5.2 Push the proposal branch or main branch update after review.
+- [x] 5.1 Commit the OpenSpec proposal artifacts.
+- [x] 5.2 Push the proposal branch or main branch update after review.

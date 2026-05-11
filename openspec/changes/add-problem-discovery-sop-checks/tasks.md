@@ -29,5 +29,5 @@
 
 ## 5. Publishing
 
-- [ ] 5.1 Commit implementation changes.
+- [x] 5.1 Commit implementation changes.
 - [ ] 5.2 Push main branch update.

@@ -30,6 +30,21 @@ The skill SHALL use the recognized construction stage to prioritize applicable s
 - **WHEN** the stage is window/door installation or window edge finishing
 - **THEN** the skill SHALL prioritize decoration quality, door/window installation, waterproof sealing, and design-node evidence
 
+### Requirement: Dedicated stage reference materials
+Each supported construction stage SHALL have dedicated reference materials that separate authoritative standards from supplemental benchmarks and visual examples.
+
+#### Scenario: Stage package exists
+- **WHEN** the skill supports a construction stage
+- **THEN** the stage SHALL have reference data containing stage cues, authoritative standard IDs, required checks, common issues, recommended evidence, and next-stage gate criteria
+
+#### Scenario: Supplemental references are available
+- **WHEN** enterprise workmanship standards, manufacturer instructions, design nodes, good examples, or bad examples are used for a stage
+- **THEN** the skill SHALL label them as supplemental reference materials and SHALL NOT present them as overriding authoritative standards
+
+#### Scenario: Stage source gap exists
+- **WHEN** a stage lacks complete authoritative or supplemental reference materials
+- **THEN** the skill SHALL mark the source gap and SHALL qualify confidence for findings that depend on the missing reference type
+
 ### Requirement: Stage common issue comparison
 The skill SHALL compare observed evidence against the common issue patterns for the recognized stage.
 

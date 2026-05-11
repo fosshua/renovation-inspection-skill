@@ -86,6 +86,7 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
 
 9. Produce structured output.
    - Follow `references/output-schema.json`.
+   - Use the layered report structure in "Output Style" for user-facing answers.
    - Include an overall summary, most urgent next steps, findings, evidence gaps, and limitation note.
    - Mention the identified stage and the most important stage-specific checks.
    - Include `stage_id`, `stage_name`, and `common_issue_match` in findings when applicable.
@@ -190,9 +191,18 @@ Do not use reference examples to:
 
 - Default to Simplified Chinese for the full inspection result unless the user explicitly asks for another language.
 - Keep technical identifiers and schema enum values in their original English form, but explain their meaning in Chinese when helpful.
-- Start with a concise overall assessment.
-- List findings in severity order.
-- For each finding, include evidence, risk, basis, confidence, and actionable remediation.
+- Default output should be layered for homeowners:
+  1. `结论`：2-4 short bullets covering whether an actionable problem exists, severity, whether to stop the next stage, and the most urgent action.
+  2. `可以直接发给施工方`：a concise, copy-ready message when there is an actionable issue or missing required check.
+  3. `问题清单`：findings in severity order. For normal or non-site evidence, say no confirmed defect is visible and keep this section short.
+  4. `需要补充的证据`：only the most useful next photos, videos, measurements, or records.
+  5. `依据和限制`：standards basis, uncertainty, and professional limitations.
+- Keep the opening practical and short. Avoid starting with a long standards discussion.
+- For high-risk items, say directly whether the user should pause the next stage: "建议先暂停/不建议进入下一道工序".
+- Explain severity in plain Chinese next to enum values, for example: "`high`：高风险，建议整改后再继续".
+- For each finding, include evidence, risk, basis, evidence strength, confidence, and actionable remediation.
+- When there is no confirmed problem, keep the answer short and emphasize what can and cannot be verified.
+- When the input is a drawing or record rather than a site photo/video, do not use a full defect report. Treat it as design or documentary evidence and suggest specific on-site checks.
 - Use direct, practical language suitable for a homeowner or project manager.
 - For high-risk items, recommend stopping related work and involving a qualified professional or responsible contractor.
 - Include a limitation note when safety, structure, electrical, waterproofing, gas, fire safety, or legal acceptance is involved.

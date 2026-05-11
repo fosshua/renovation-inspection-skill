@@ -7,6 +7,8 @@ Use this checklist before marking the skill ready.
 - Every response includes `overall_assessment`.
 - Every response includes `stage_assessment` with `primary_stage` and confidence.
 - Every response includes `urgent_next_steps`.
+- User-facing answers start with a short Chinese conclusion before detailed standards or findings.
+- Actionable issue responses include a concise "可以直接发给施工方" message.
 - Every finding includes `id`, `severity`, `category`, `evidence_refs`, `observed_evidence`, `risk`, `reference_basis`, `recommendation`, and `confidence`.
 - Findings include `stage_id` and `stage_name` when the construction stage is known.
 - Findings include `evidence_strength` as `confirmed`, `suspected`, or `not_verifiable` when applicable.
@@ -51,6 +53,7 @@ Use this checklist before marking the skill ready.
 ## Insufficient Evidence
 
 - Blurry, cropped, distant, or missing-context inputs do not produce definitive pass/fail claims.
+- Normal, non-site, or document-only images use a short response and do not invent construction defects.
 - Hidden plumbing, wiring, waterproofing, and structure are not judged unless directly visible or supported by records.
 - The response asks for specific missing evidence, such as close-up photos, side views, level/ruler measurements, pressure-test records, water-retention records, or concealed-work photos.
 - Text-only or low-confidence responses explicitly tell the user they can supplement photos, videos, measurements, or construction records for a follow-up assessment.

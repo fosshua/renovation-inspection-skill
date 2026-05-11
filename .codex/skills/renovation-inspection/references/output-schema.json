@@ -53,6 +53,32 @@
       "type": "array",
       "items": { "type": "string" }
     },
+    "evidence_pack_assessment": {
+      "type": "object",
+      "properties": {
+        "completeness": {
+          "type": "string",
+          "enum": ["complete", "partial", "insufficient"]
+        },
+        "available_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "missing_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "measurement_reliability": {
+          "type": "string",
+          "enum": ["high", "medium", "low", "not_applicable"]
+        },
+        "project_agreement_gaps": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "classification_notes": { "type": "string" }
+      }
+    },
     "inspection_completeness": {
       "type": "object",
       "properties": {

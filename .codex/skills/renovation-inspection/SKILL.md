@@ -35,35 +35,41 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
 2. Identify the construction stage.
    - Load `references/stage-inspection-matrix.yaml`.
    - Classify one or more likely stages from visual cues and text context.
+   - If user text names a specific component or craft, such as 海棠角, 阳角, 瓷砖, 窗框, 地漏, 打压, or闭水, weigh that label heavily when compatible with the image.
    - Include stage confidence: `high`, `medium`, or `low`.
    - If evidence spans multiple stages, name the dominant stage and secondary stages.
    - If the stage is ambiguous, list candidate stages and ask for wider photos/video or project context before making stage-specific claims.
 
-3. Load stage reference materials.
+3. Check evidence completeness.
+   - Load `references/evidence-capture-protocol.md` when the image is close-up, ambiguous, measurement-dependent, or missing project context.
+   - Classify the evidence pack as `complete`, `partial`, or `insufficient` before making strong conclusions.
+   - Use the protocol's minimum evidence pack to ask for the exact missing wide view, marked location, close-up scale, side angle, video, record, drawing, sample-board, or contract evidence.
+
+4. Load stage reference materials.
    - Load the detected stage entry from `references/stage-inspection-matrix.yaml`.
    - If `reference_package` is present, load the corresponding file under `references/stages/`.
    - Use the stage's `authoritative_standard_ids` to prioritize sources in `references/standards-sources.yaml`.
    - Use `supplemental_benchmark_ids`, manufacturer/design guidance, good examples, and bad example patterns only as supplemental references.
    - Keep stage `source_gaps` visible in uncertainty and evidence-gap handling.
 
-4. Extract visual evidence.
+5. Extract visual evidence.
    - Inspect only what is visible.
    - Record location, observable defect, affected component, and evidence reference.
    - Preserve per-image or per-timestamp references in every finding.
 
-5. Retrieve assessment sources.
+6. Retrieve assessment sources.
    - Load `references/standards-sources.yaml`.
    - Prefer applicable national or industry standards with source metadata from the detected stage.
    - Use enterprise standards only as supplemental best-practice benchmarks.
    - If no reliable source applies, label the basis as `visual_practical_judgment`.
 
-6. Retrieve or compare reference examples.
+7. Retrieve or compare reference examples.
    - Load `references/reference-image-strategy.md`.
    - Use stage package `good_example_requirements` and `bad_example_patterns` as comparison prompts.
    - Use reference examples only to compare observable construction attributes.
    - Do not treat a reference image as a legal pass/fail standard.
 
-7. Detect and classify issues.
+8. Detect and classify issues.
    - Compare evidence against the detected stage's `required_checks`, `common_issues`, and `bad_example_patterns`.
    - Load `references/shortcut-patterns.yaml` and compare evidence against stage-specific shortcut or poor-practice patterns.
    - Convert a common issue into a finding only when visible evidence or user text supports it.
@@ -78,13 +84,13 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
    - Avoid over-grouping unrelated defects.
    - Avoid hidden-work conclusions when evidence is incomplete.
 
-8. Rank severity.
+9. Rank severity.
    - Sort by severity in this order: `critical`, `high`, `medium`, `low`, `info`.
    - Use the criteria in `references/severity-and-confidence.md`.
    - Consider `next_stage_gate` when judging urgency before the next construction step.
    - Add stage-gate risk: whether the issue or missing check blocks the next stage.
 
-9. Produce structured output.
+10. Produce structured output.
    - Follow `references/output-schema.json`.
    - Use the layered report structure in "Output Style" for user-facing answers.
    - Include an overall summary, most urgent next steps, findings, evidence gaps, and limitation note.
@@ -104,6 +110,9 @@ Do not claim to verify hidden work, concealed waterproofing, embedded wiring, em
 - Mention the evidence ID in every finding based on that image.
 - If the same issue appears in multiple images, include all relevant evidence IDs.
 - Do not infer dimensions, slopes, cable size, water pressure, flatness tolerance, or waterproofing height unless visible scale, measurement marks, or user-provided measurements support it.
+- For close-up-only photos, first identify likely component candidates and ask for a wide context photo unless the user's text clearly names the component.
+- For ruler photos, state whether the ruler is aligned with the measured edge. If alignment is unclear, give approximate readings only and request a perpendicular ruler photo.
+- For repeated finish details, such as tile corners, joints, trim, and sealant, ask for 2-3 comparable locations before judging whether the issue is isolated or systemic.
 
 ### Video
 
@@ -128,12 +137,15 @@ When evidence is insufficient, do not force a pass/fail result. Return:
 - Why current evidence is insufficient.
 - The exact extra media or measurement needed, such as a close-up, side-angle shot, level measurement, ruler reference, water test record, pressure test record, concealed-work photo, or product label.
 - A concise prompt telling the user they can upload additional photos, videos, measurements, or施工记录 for a more reliable follow-up assessment.
+- When a national standard does not provide a direct numeric tolerance, ask for design nodes, sample board, contract wording, quotation workmanship description, enterprise standard, manufacturer instruction, or comparable locations.
+- If the user already names the defect, explain whether the image supports that named issue and what evidence would confirm it.
 
 Prefer specific supplement prompts:
 - "请补充远景 + 近景照片，并用胶带或笔标出问题位置。"
 - "请补充 10-20 秒横向视频，包含整体位置、近距离细节和尺子/水平尺参照。"
 - "如果是隐蔽工程，请补充封槽/回填前照片、闭水记录、打压记录或材料标签。"
 - "如果涉及尺寸或坡度，请补充带尺子的照片或水平仪/坡度测量结果。"
+- "如果是海棠角/阳角/收口观感，请补充整体位置、垂直尺量近景、侧面角度、同区域其他阳角和样板/合同约定。"
 
 ## Standards Basis Rules
 
@@ -221,6 +233,7 @@ Do not use reference examples to:
 - `references/stage-inspection-matrix.yaml`
 - `references/stages/*.yaml`
 - `references/shortcut-patterns.yaml`
+- `references/evidence-capture-protocol.md`
 - `references/reference-image-strategy.md`
 - `references/severity-and-confidence.md`
 - `tests/fixtures/README.md`

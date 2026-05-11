@@ -7,6 +7,7 @@ Use this checklist before marking the skill ready.
 - Every response includes `overall_assessment`.
 - Every response includes `stage_assessment` with `primary_stage` and confidence.
 - Every response includes `urgent_next_steps`.
+- Ambiguous, close-up, or measurement-dependent responses include evidence-pack completeness or equivalent explanation.
 - User-facing answers start with a short Chinese conclusion before detailed standards or findings.
 - Actionable issue responses include a concise "可以直接发给施工方" message.
 - Every finding includes `id`, `severity`, `category`, `evidence_refs`, `observed_evidence`, `risk`, `reference_basis`, `recommendation`, and `confidence`.
@@ -20,6 +21,7 @@ Use this checklist before marking the skill ready.
 ## Stage Recognition
 
 - The skill identifies the construction stage before selecting standards or producing findings.
+- User-provided component/trade labels are used to disambiguate visually similar close-ups when compatible with the image.
 - Mixed-stage inputs identify primary and secondary stages instead of forcing one stage.
 - Ambiguous-stage inputs list likely candidate stages and request wider photos/video or stage context.
 - Stage package materials are loaded before findings for high-priority stages.
@@ -55,6 +57,9 @@ Use this checklist before marking the skill ready.
 
 - Blurry, cropped, distant, or missing-context inputs do not produce definitive pass/fail claims.
 - Normal, non-site, or document-only images use a short response and do not invent construction defects.
+- Close-up-only images request wide context, marked location, same-plane scale, and side/sweep angle when needed.
+- Measurement-based claims state approximate readings and measurement reliability when ruler alignment or perspective is imperfect.
+- Workmanship details without direct numeric standards request design nodes, sample board, contract wording, enterprise standard, or comparable locations.
 - Hidden plumbing, wiring, waterproofing, and structure are not judged unless directly visible or supported by records.
 - The response asks for specific missing evidence, such as close-up photos, side views, level/ruler measurements, pressure-test records, water-retention records, or concealed-work photos.
 - Text-only or low-confidence responses explicitly tell the user they can supplement photos, videos, measurements, or construction records for a follow-up assessment.

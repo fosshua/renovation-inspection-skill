@@ -1,0 +1,245 @@
+metadata:
+  purpose: Initial retrieval source list for renovation inspection.
+  authority_order:
+    - national_standard
+    - mandatory_engineering_code
+    - industry_standard
+    - local_rule
+    - enterprise_benchmark
+    - reference_image_comparison
+    - visual_practical_judgment
+  source_verification_rule: >
+    Verify the latest official text before contractual, legal, or acceptance use.
+    Engineering construction standards may not be fully available in the national
+    standard public reading system; use authoritative ministry, publisher, or
+    licensed database sources where required.
+  checked_date: "2026-05-11"
+
+national_and_industry_sources:
+  - id: gb-50210-2018
+    type: national_standard
+    number: GB 50210-2018
+    name: 建筑装饰装修工程质量验收标准
+    version_or_date: "2018"
+    applies_to:
+      - plastering
+      - doors_windows
+      - ceiling
+      - lightweight_partition
+      - facing_panel
+      - tile_facing
+      - curtain_wall
+      - painting
+      - detail_work
+    citation_text: "GB 50210-2018《建筑装饰装修工程质量验收标准》"
+    official_notice_url: "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_237285.html"
+    current_note: "住建部公告编号为 GB 50210-2018，自 2018-09-01 实施；相关强制性条文受后续通用规范调整影响时，以现行强制性工程建设规范为准。"
+    verification_status: verify_official_text_before_use
+
+  - id: gb-55038-2025
+    type: mandatory_engineering_code
+    number: GB 55038-2025
+    name: 住宅项目规范
+    version_or_date: "2025"
+    applies_to:
+      - residential_project
+      - residential_safety
+      - residential_function
+      - residential_mandatory_requirements
+    citation_text: "GB 55038-2025《住宅项目规范》"
+    official_notice_url: "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2025/art_66adac27fa2144bb86f98fe4c297efd6.html"
+    current_note: "住建部公告说明该规范自 2025-05-01 实施，全部条文必须严格执行；现行工程建设标准中有关规定与本规范不一致的，以本规范为准。"
+    verification_status: verify_official_text_before_use
+
+  - id: gb-55032-2022
+    type: mandatory_engineering_code
+    number: GB 55032-2022
+    name: 建筑与市政工程施工质量控制通用规范
+    version_or_date: "2022"
+    applies_to:
+      - construction_quality_control
+      - acceptance_principles
+      - inspection
+      - quality_responsibility
+    citation_text: "GB 55032-2022《建筑与市政工程施工质量控制通用规范》"
+    official_notice_url: "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_767714.html"
+    current_note: "住建部公告说明该规范自 2023-03-01 实施，全部条文必须严格执行，并废止部分既有工程建设标准强制性条文。"
+    verification_status: verify_official_text_before_use
+
+  - id: gb-55030-2022
+    type: mandatory_engineering_code
+    number: GB 55030-2022
+    name: 建筑与市政工程防水通用规范
+    version_or_date: "2022"
+    applies_to:
+      - waterproofing
+      - waterproof_design
+      - waterproof_construction
+      - leakage_prevention
+    citation_text: "GB 55030-2022《建筑与市政工程防水通用规范》"
+    official_notice_url: "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_768499.html"
+    current_note: "住建部公告说明该规范自 2023-04-01 实施，全部条文必须严格执行；与现行标准不一致时以本规范为准。"
+    verification_status: verify_official_text_before_use
+
+  - id: gb-50327-2001
+    type: national_standard
+    number: GB 50327-2001
+    name: 住宅装饰装修工程施工规范
+    version_or_date: "2001"
+    applies_to:
+      - residential_renovation
+      - construction_sequence
+      - site_protection
+      - basic_workmanship
+      - safety_construction
+    citation_text: "GB 50327-2001《住宅装饰装修工程施工规范》"
+    official_notice_url: "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2006/art_17339_156630.html"
+    current_note: "住建部 2025 年 GB 55038-2025 公告列明 GB 50327-2001 的 3.1.3、3.1.7、3.2.2、4.1.1、4.3.4、4.3.6、4.3.7、10.1.6 强制性条文同时废止；使用前必须核对现行有效条文。"
+    verification_status: verify_current_status_before_use
+
+  - id: gb-50300-2013
+    type: national_standard
+    number: GB 50300-2013
+    name: 建筑工程施工质量验收统一标准
+    version_or_date: "2013"
+    applies_to:
+      - acceptance_principles
+      - quality_acceptance
+      - inspection_batch
+      - subproject_acceptance
+    citation_text: "GB 50300-2013《建筑工程施工质量验收统一标准》"
+    current_note: "部分强制性条文受 GB 55032-2022 等通用规范调整影响；用于验收原则时需核对现行有效条文。"
+    verification_status: verify_official_text_before_use
+
+  - id: gb-50303-2015
+    type: national_standard
+    number: GB 50303-2015
+    name: 建筑电气工程施工质量验收规范
+    version_or_date: "2015"
+    applies_to:
+      - electrical_installation
+      - wiring
+      - distribution_box
+      - grounding
+      - socket_switch
+      - conduit
+    citation_text: "GB 50303-2015《建筑电气工程施工质量验收规范》"
+    verification_status: verify_official_text_before_use
+
+  - id: gb-50242-2002
+    type: national_standard
+    number: GB 50242-2002
+    name: 建筑给水排水及采暖工程施工质量验收规范
+    version_or_date: "2002"
+    applies_to:
+      - plumbing
+      - drainage
+      - heating
+      - pipe_installation
+      - pressure_test
+      - slope
+    citation_text: "GB 50242-2002《建筑给水排水及采暖工程施工质量验收规范》"
+    verification_status: verify_current_status_before_use
+
+  - id: gb-50209-2010
+    type: national_standard
+    number: GB 50209-2010
+    name: 建筑地面工程施工质量验收规范
+    version_or_date: "2010"
+    applies_to:
+      - floor_base
+      - floor_tile
+      - wood_floor
+      - surface_flatness
+      - hollowing
+      - drainage_slope
+    citation_text: "GB 50209-2010《建筑地面工程施工质量验收规范》"
+    verification_status: verify_official_text_before_use
+
+  - id: gb-50325-2020
+    type: national_standard
+    number: GB 50325-2020
+    name: 民用建筑工程室内环境污染控制标准
+    version_or_date: "2020"
+    applies_to:
+      - indoor_environment
+      - material_pollutants
+      - formaldehyde
+      - benzene
+      - tvoc
+      - radon
+    citation_text: "GB 50325-2020《民用建筑工程室内环境污染控制标准》"
+    official_notice_url: "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2020/art_17339_245708.html"
+    current_note: "住建部公告编号为 GB 50325-2020，自 2020-08-01 实施，原 GB 50325-2010 同时废止。"
+    verification_status: verify_official_text_before_use
+
+  - id: gb-55037-2022
+    type: mandatory_engineering_code
+    number: GB 55037-2022
+    name: 建筑防火通用规范
+    version_or_date: "2022"
+    applies_to:
+      - fire_safety
+      - fire_separation
+      - evacuation
+      - material_fire_performance
+    citation_text: "GB 55037-2022《建筑防火通用规范》"
+    current_note: "强制性工程建设规范；用于涉及消防设施、疏散、防火分隔、装修材料防火等高风险判断。"
+    verification_status: verify_official_text_before_use
+
+  - id: jgj-298-2013
+    type: industry_standard
+    number: JGJ 298-2013
+    name: 住宅室内防水工程技术规范
+    version_or_date: "2013"
+    applies_to:
+      - bathroom_waterproofing
+      - kitchen_waterproofing
+      - balcony_waterproofing
+      - water_retention_test
+      - waterproof_layer_detail
+    citation_text: "JGJ 298-2013《住宅室内防水工程技术规范》"
+    verification_status: verify_current_status_before_use
+
+  - id: gb-t-20238-2018
+    type: national_standard
+    number: GB/T 20238-2018
+    name: 木质地板铺装、验收和使用规范
+    version_or_date: "2018"
+    applies_to:
+      - wood_floor
+      - floor_installation
+      - floor_acceptance
+      - floor_use
+    citation_text: "GB/T 20238-2018《木质地板铺装、验收和使用规范》"
+    verification_status: verified_status_current_in_openstd_on_2026-05-11
+
+enterprise_benchmarks:
+  - id: dongyirisheng-construction-benchmark
+    type: enterprise_benchmark
+    name: 东易日盛等大型装企公开施工工艺或验收标准
+    version_or_date: verify_per_source
+    applies_to:
+      - workmanship
+      - protection
+      - sequencing
+      - detail_acceptance
+    authority_note: "仅作为企业工艺或最佳实践参考，不替代国标、行业标准、地方规范或合同约定。"
+
+  - id: longfor-or-vanke-fine-decoration-benchmark
+    type: enterprise_benchmark
+    name: 龙湖、万科等房企精装修工程标准或交付评估资料
+    version_or_date: verify_per_source
+    applies_to:
+      - fine_decoration
+      - finished_product_protection
+      - tile_and_paint_detail
+      - delivery_quality
+    authority_note: "仅作为可追溯公开资料或内部授权资料的补充基准，不作为强制验收依据。"
+
+retrieval_rules:
+  - Prefer sources whose applies_to values match the observed room, trade, material, and defect.
+  - Rank national_standard and mandatory_engineering_code above industry_standard.
+  - Rank industry_standard above enterprise_benchmark unless the issue is only a workmanship best-practice comparison.
+  - Do not cite enterprise_benchmark as a compliance failure unless the user explicitly asks against that company standard.
+  - If only visual judgment applies, cite visual_practical_judgment and reduce confidence.

@@ -33,5 +33,5 @@
 
 ## 6. Publishing
 
-- [ ] 6.1 Commit implementation changes.
-- [ ] 6.2 Push main branch update.
+- [x] 6.1 Commit implementation changes.
+- [x] 6.2 Push main branch update.

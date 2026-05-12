@@ -3,6 +3,8 @@ import os
 import sys
 from pathlib import Path
 
+import httpx
+import pytest
 from fastapi.testclient import TestClient
 
 
@@ -18,6 +20,12 @@ from service.app import app  # noqa: E402
 
 
 client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def clear_inspection_backends(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("INSPECTION_BACKEND_URL", raising=False)
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
 
 
 def wechat_signature(timestamp: str = "123", nonce: str = "abc") -> str:
@@ -104,3 +112,27 @@ def test_wechat_image_message_fallback() -> None:
     assert response.status_code == 200
     assert "<MsgType><![CDATA[text]]></MsgType>" in response.text
     assert "已收到图片" in response.text
+
+
+def test_mini_inspect_model_rate_limit(monkeypatch: pytest.MonkeyPatch) -> None:
+    async def raise_rate_limit(_req):  # type: ignore[no-untyped-def]
+        request = httpx.Request("POST", "https://api.openai.com/v1/chat/completions")
+        response = httpx.Response(429, request=request, text="Too Many Requests")
+        raise httpx.HTTPStatusError("rate limited", request=request, response=response)
+
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+    monkeypatch.setattr("service.inspection.call_openai_compatible", raise_rate_limit)
+
+    response = client.post(
+        "/api/mini/inspect",
+        json={
+            "user_id": "mini-user",
+            "text": "帮我看看这张装修图",
+            "image_url": "https://example.com/window.jpg",
+        },
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "provider_error"
+    assert data["engine"] == "openai_compatible"
+    assert "限流" in data["answer"]

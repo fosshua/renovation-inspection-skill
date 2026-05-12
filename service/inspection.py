@@ -44,8 +44,20 @@ async def run_inspection(req: InspectionRequest) -> InspectionResult:
         return InspectionResult(answer=answer, session_id=req.session_id, engine="external_backend")
 
     if os.getenv("OPENAI_API_KEY"):
-        answer = await call_openai_compatible(req)
-        return InspectionResult(answer=answer, session_id=req.session_id, engine="openai_compatible")
+        try:
+            answer = await call_openai_compatible(req)
+            return InspectionResult(
+                answer=answer,
+                session_id=req.session_id,
+                engine="openai_compatible",
+            )
+        except httpx.HTTPStatusError as exc:
+            return InspectionResult(
+                answer=model_error_reply(exc),
+                session_id=req.session_id,
+                status="provider_error",
+                engine="openai_compatible",
+            )
 
     return InspectionResult(
         answer=fallback_reply(req.message_type, req.text, req.image_url),
@@ -166,6 +178,33 @@ def extract_text(raw: str) -> str:
             continue
         chunks.append(line)
     return "\n".join(chunks) if chunks else raw
+
+
+def model_error_reply(exc: httpx.HTTPStatusError) -> str:
+    status_code = exc.response.status_code
+    if status_code == 429:
+        return (
+            "检测模型当前触发限流或额度不足，图片已经到达本地服务，但暂时无法完成 AI 判断。\n\n"
+            "你可以稍后重试，或切换/补充模型额度后再次提交。"
+            "如果是现场验收场景，建议先补充远景、带尺近景和问题位置标注，后续重试时能提高判断准确度。"
+        )
+
+    if status_code in {401, 403}:
+        return (
+            "检测模型鉴权失败，请检查 `OPENAI_API_KEY`、模型权限或代理配置。"
+            "本地 API 服务是可用的，但当前无法调用模型完成识别。"
+        )
+
+    if 500 <= status_code < 600:
+        return (
+            "检测模型服务暂时不可用。本地 API 服务已收到请求，请稍后重试，"
+            "或临时切换 `INSPECTION_BACKEND_URL` / `OPENAI_MODEL`。"
+        )
+
+    return (
+        f"检测模型返回异常状态 {status_code}。本地 API 服务已收到请求，"
+        "但当前无法完成 AI 判断，请检查模型配置后重试。"
+    )
 
 
 def fallback_reply(message_type: str, text: str, image_url: str | None) -> str:

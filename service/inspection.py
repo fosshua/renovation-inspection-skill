@@ -93,21 +93,17 @@ async def call_openai_compatible(req: InspectionRequest) -> str:
     timeout = float(os.getenv("REPLY_TIMEOUT_SECONDS", "30"))
     endpoint = base_url.rstrip("/") + "/chat/completions"
 
-    user_content: list[dict[str, Any]] = [
-        {
-            "type": "text",
-            "text": req.text
-            or "请作为家装施工问题检测助手，检查用户提供的装修证据，并按技能要求输出中文结果。",
-        }
-    ]
-    if req.image_url:
-        user_content.append({"type": "image_url", "image_url": {"url": req.image_url}})
-
     payload = {
         "model": model,
         "messages": [
             {"role": "system", "content": load_skill_prompt()},
-            {"role": "user", "content": user_content},
+            {
+                "role": "user",
+                "content": build_openai_user_content(
+                    req,
+                    supports_vision=model_supports_vision(base_url),
+                ),
+            },
         ],
         "temperature": 0.2,
     }
@@ -123,6 +119,41 @@ async def call_openai_compatible(req: InspectionRequest) -> str:
         resp.raise_for_status()
     data = resp.json()
     return data["choices"][0]["message"]["content"]
+
+
+def model_supports_vision(base_url: str) -> bool:
+    explicit = os.getenv("OPENAI_MODEL_SUPPORTS_VISION", "").strip().lower()
+    if explicit in {"1", "true", "yes", "on"}:
+        return True
+    if explicit in {"0", "false", "no", "off"}:
+        return False
+
+    return "deepseek.com" not in base_url.lower()
+
+
+def build_openai_user_content(
+    req: InspectionRequest,
+    supports_vision: bool,
+) -> str | list[dict[str, Any]]:
+    text = (
+        req.text
+        or "请作为家装施工问题检测助手，检查用户提供的装修证据，并按技能要求输出中文结果。"
+    )
+    if req.image_url and not supports_vision:
+        text += (
+            "\n\n注意：当前模型配置不支持直接读取图片。"
+            f"用户提交了图片地址：{req.image_url}。"
+            "请不要假装已经看到了图片，只能基于用户文字描述给出初步判断，"
+            "并明确要求用户补充问题位置、尺寸、远景、带尺近景或改用视觉模型。"
+        )
+
+    if not supports_vision:
+        return text
+
+    user_content: list[dict[str, Any]] = [{"type": "text", "text": text}]
+    if req.image_url and supports_vision:
+        user_content.append({"type": "image_url", "image_url": {"url": req.image_url}})
+    return user_content
 
 
 def load_skill_prompt() -> str:

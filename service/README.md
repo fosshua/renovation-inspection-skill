@@ -26,6 +26,7 @@ Optional:
 - `OPENAI_API_KEY`: enables the built-in OpenAI-compatible multimodal inspection mode when no external backend is configured.
 - `OPENAI_BASE_URL`: default `https://api.openai.com/v1`.
 - `OPENAI_MODEL`: default `gpt-4o-mini`.
+- `OPENAI_MODEL_SUPPORTS_VISION`: optional override. Use `false` for text-only OpenAI-compatible providers such as DeepSeek.
 - `UPLOAD_DIR`: default `uploads`.
 - `REPLY_TIMEOUT_SECONDS`: default `4`.
 - `PUBLIC_BASE_URL`: public HTTPS origin used to build uploaded image URLs, for example `https://your-domain.example.com`.
@@ -114,6 +115,21 @@ wx.uploadFile({
   }
 })
 ```
+
+## DeepSeek Configuration
+
+DeepSeek uses an OpenAI-compatible chat completions API, but its official schema expects text `content` for user messages. It does not provide an image input contract in the same `image_url` format used by OpenAI vision models.
+
+Use DeepSeek for text-only inspection or for analyzing the user's written description:
+
+```bash
+export OPENAI_API_KEY="your-deepseek-api-key"
+export OPENAI_BASE_URL="https://api.deepseek.com"
+export OPENAI_MODEL="deepseek-v4-flash"
+export OPENAI_MODEL_SUPPORTS_VISION="false"
+```
+
+For image-based detection, use a provider/model that supports vision input, or route image inspection through `INSPECTION_BACKEND_URL`.
 
 ## Docker
 

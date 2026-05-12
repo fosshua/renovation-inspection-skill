@@ -17,6 +17,11 @@ os.environ["WECHAT_APP_SECRET"] = "testsecret"
 os.environ["UPLOAD_DIR"] = "/tmp/home-renovation-assistant-test-uploads"
 
 from service.app import app  # noqa: E402
+from service.inspection import (  # noqa: E402
+    InspectionRequest,
+    build_openai_user_content,
+    model_supports_vision,
+)
 
 
 client = TestClient(app)
@@ -136,3 +141,23 @@ def test_mini_inspect_model_rate_limit(monkeypatch: pytest.MonkeyPatch) -> None:
     assert data["status"] == "provider_error"
     assert data["engine"] == "openai_compatible"
     assert "限流" in data["answer"]
+
+
+def test_deepseek_defaults_to_text_only_vision_mode(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("OPENAI_MODEL_SUPPORTS_VISION", raising=False)
+    assert model_supports_vision("https://api.deepseek.com") is False
+
+    content = build_openai_user_content(
+        InspectionRequest(
+            user_id="mini-user",
+            session_id="user-mini-user",
+            message_type="image",
+            text="瓷砖海棠角是不是太宽",
+            image_url="https://example.com/tile.jpg",
+        ),
+        supports_vision=False,
+    )
+
+    assert isinstance(content, str)
+    assert "当前模型配置不支持直接读取图片" in content
+    assert "https://example.com/tile.jpg" in content

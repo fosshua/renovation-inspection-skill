@@ -1,0 +1,1 @@
+"""Home renovation assistant service."""
